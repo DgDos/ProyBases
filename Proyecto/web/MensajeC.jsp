@@ -11,7 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Agregar Usuario</title>
+        <title>Agregar Mensaje</title>
         <!--
         Ocean Theme
         http://www.templatemo.com/tm-484-ocean
@@ -40,33 +40,14 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-xs-center">
 
-                    <h2 class="tm-section-title">Agregar Usuario</h2>
+                    <h2 class="tm-section-title">Agregar Mensaje</h2>
                     <br><br>
 
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-left">
-                    <form align="center" action="Usuario" method="POST" class="tm-contact-form">                                
-                        <label align="center" for="trabajador">Nombre del Trabajador(Completo)</label>
-                        <input type="text" name="trabajador" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
-                        <br>
-                        <label align="center" for="cargo">Cargo</label>
-                        <select name="cargo" size="1" class="form-control form-control-lg">
-                            <option value="go">Gerente Operativo</option>
-                            <option value="ga">Gerente Administrativo</option>
-                            <option value="gc">Gerente Comercial</option>
-                            <option value="e">Empleado</option>
-                            <option value="s">Subgerente</option>
-                        </select>
-                        <br>
-                        <label align="center" for="usuario">Usuario</label>
-                        <input type="text" name="usuario" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
-                        <br>
-                        <label align="center" for="password">Password</label>
-                        <input type="password" name="password" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
-                        <br>
-                        <label align="center" for="supervisor">Supervisor</label>
-                        <select name="supervisor" class="form-control form-control-lg">
-                            <option value="0">---------------------</option>
+                    <form align="center" action="MensajeC" method="POST" class="tm-contact-form"> 
+                        <label align="center" for="idU1">Supervisor</label>
+                        <select name="idU1" class="form-control form-control-lg">
                             <%
                                 if (request.getAttribute("usuarios") != null) {
                                     ArrayList<Trabajador> array = (ArrayList<Trabajador>) request.getAttribute("usuarios");
@@ -76,11 +57,34 @@
                             <%      }
                                 }
                             %>
-                        </select>   
+                        </select>  
+                        <br>
+                        <label align="center" for="idU2">Destinatario</label>
+                        <select name="idU2" class="form-control form-control-lg">
+                            <%
+                                if (request.getAttribute("usuarios") != null) {
+                                    ArrayList<Trabajador> array = (ArrayList<Trabajador>) request.getAttribute("usuarios");
+                                    for (Trabajador t : array) {     
+                            %>
+                            <option value="<%=t.getIdUsuario()%>"><%=t.getNombre()%></option>
+                            <%      }
+                                }
+                            %>
+                        </select>  
+                        <%
+                        if(request.getAttribute("invalido") != null){
+                            %><h6 class="tm-2-col-text-description">No puede escojer el mismo usuario para enviar un mensaje</h6><%
+                        }
+                        %>
+                        <br>
+                        <label align="center" for="asunto">Asunto</label>
+                        <input type="text" name="asunto" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
+                        <br>
+                        <label align="center" for="texto">Texto</label>
+                        <input type="text" name="texto" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
                         <button type="submit" class="btn tm-bordered-btn pull-xs-center">Agregar</button>
-                        <a class="btn tm-bordered-btn pull-xs-center" href="/Proyecto/menu.html" role="button">Volver</a>
                     </form>  
-                    
+                    <a class="btn tm-bordered-btn pull-xs-center" href="/Proyecto/menu.html" role="button">Volver</a>
                 </div>                         
                    
 
