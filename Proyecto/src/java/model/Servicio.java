@@ -12,13 +12,15 @@ package model;
 public class Servicio {
     private int idServicio;
     private String nombreS;
+    private int estado;
 
     public Servicio() {
     }
 
-    public Servicio(int idServicio, String Servicio) {
+    public Servicio(int idServicio, String Servicio,int estado) {
         this.idServicio = idServicio;
         this.nombreS = Servicio;
+        this.estado=estado;
     }
 
     
@@ -41,6 +43,14 @@ public class Servicio {
 
     public void setNombreS(String nombreS) {
         this.nombreS = nombreS;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     

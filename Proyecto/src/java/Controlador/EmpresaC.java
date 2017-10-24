@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import dao.EmpresaDAO;
+import dao.EmpresaClienteDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Empresa;
+import model.EmpresaCliente;
 
 /**
  *
@@ -28,8 +28,8 @@ public class EmpresaC extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action=request.getParameter("action");
-        EmpresaDAO e=new EmpresaDAO();
-        ArrayList<Empresa> empresas=new ArrayList<>();
+        EmpresaClienteDAO e=new EmpresaClienteDAO();
+        ArrayList<EmpresaCliente> empresas=new ArrayList<>();
         try {
             empresas=e.getAllEmpresas();
         } catch (SQLException ex) {
@@ -58,9 +58,9 @@ public class EmpresaC extends HttpServlet {
         String nombre=request.getParameter("nombreE");
         int NIT=Integer.parseInt(request.getParameter("NIT"));
         String direccion=request.getParameter("direccion");
-        Empresa empresa=new Empresa(NIT, nombre, usuarioE, passwordE, direccion);
+        EmpresaCliente empresa=new EmpresaCliente(NIT, nombre, usuarioE, passwordE, direccion);
         
-        EmpresaDAO e=new EmpresaDAO();
+        EmpresaClienteDAO e=new EmpresaClienteDAO();
         try {
             e.addEmpresa(empresa);
         } catch (SQLException ex) {

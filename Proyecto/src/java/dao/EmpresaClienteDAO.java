@@ -11,21 +11,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Empresa;
+import model.EmpresaCliente;
 import util.DbUtil;
 
 /**
  *
  * @author FiJus
  */
-public class EmpresaDAO {
+public class EmpresaClienteDAO {
     private Connection connection;
 
-    public EmpresaDAO() {
+    public EmpresaClienteDAO() {
         connection = DbUtil.getConnection();
     }
 
-    public void addEmpresa(Empresa e) throws SQLException {
+    public void addEmpresa(EmpresaCliente e) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into Empresa(NIT,nombreEmpresa,usuarioE,passwordE,direccion) values (?,?,?,?,?)");
         preparedStatement.setInt(1, e.getNIT());
         preparedStatement.setString(2, e.getNombreEmpresa());
@@ -50,12 +50,12 @@ public class EmpresaDAO {
         preparedStatement.executeUpdate();
     }
 
-    public ArrayList<Empresa> getAllEmpresas() throws SQLException {
-        ArrayList<Empresa> empresas = new ArrayList<>();
+    public ArrayList<EmpresaCliente> getAllEmpresas() throws SQLException {
+        ArrayList<EmpresaCliente> empresas = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from Empresa");
         while (rs.next()) {
-            Empresa e = new Empresa();
+            EmpresaCliente e = new EmpresaCliente();
             e.setNIT(rs.getInt("NIT"));
             e.setUsuarioE(rs.getString("usuarioE"));
             e.setPasswordE(rs.getString("passwordE"));
