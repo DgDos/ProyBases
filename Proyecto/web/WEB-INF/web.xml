@@ -24,6 +24,10 @@
         <servlet-name>MensajeC</servlet-name>
         <servlet-class>Controlador.MensajeC</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicioC</servlet-name>
+        <servlet-class>Controlador.ServicioC</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/Inicio</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>MensajeC</servlet-name>
         <url-pattern>/MensajeC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioC</servlet-name>
+        <url-pattern>/ServicioC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

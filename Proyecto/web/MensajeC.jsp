@@ -74,9 +74,11 @@
                         <%
                         if(request.getAttribute("invalido") != null){
                             %><h6 class="tm-2-col-text-description">No puede escojer el mismo usuario para enviar un mensaje</h6><%
-                        }
+                        }else{
                         %>
                         <br>
+                        <%}%>
+                        
                         <label align="center" for="asunto">Asunto</label>
                         <input type="text" name="asunto" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
                         <br>
