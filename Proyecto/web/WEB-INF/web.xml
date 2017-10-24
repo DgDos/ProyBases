@@ -12,6 +12,14 @@
         <servlet-name>Finalizado</servlet-name>
         <servlet-class>Controlador.Finalizado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Usuario</servlet-name>
+        <servlet-class>Controlador.Usuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmpresaC</servlet-name>
+        <servlet-class>Controlador.EmpresaC</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/Inicio</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>Finalizado</servlet-name>
         <url-pattern>/Finalizado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Usuario</servlet-name>
+        <url-pattern>/Usuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpresaC</servlet-name>
+        <url-pattern>/EmpresaC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
