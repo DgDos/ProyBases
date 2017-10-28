@@ -44,8 +44,8 @@
                     <br><br>
 
                 </div>
-
-                <form align="center" action="UsuarioM" method="GET" class="tm-contact-form">                                
+               
+                <form align="center" action="UsuarioM" method="POST" class="tm-contact-form">                                
                     <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-left">
                         <label align="center" for="updated">Seleccione la persona a modificar</label>
                         <select name="updated" class="form-control form-control-lg" id="Seleccion">
@@ -60,10 +60,11 @@
                             %>
                         </select>   
                         <label align="center" for="trabajador">Nombre del Trabajador(Completo)</label>
-                        <input type="text" name="trabajador" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
+                        <input type="text" name="trabajador" maxlength="30" class="form-control" placeholder="máx. 30" value=""  />
                         <br>
                         <label align="center" for="cargo">Cargo</label>
                         <select name="cargo" size="1" class="form-control form-control-lg">
+                            <option value="0">---------------------</option>
                             <option value="go">Gerente Operativo</option>
                             <option value="ga">Gerente Administrativo</option>
                             <option value="gc">Gerente Comercial</option>
@@ -72,7 +73,7 @@
                         </select>
                         <br>
                         <label align="center" for="password">Password</label>
-                        <input type="password" name="password" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
+                        <input type="password" name="password" maxlength="30" class="form-control" placeholder="máx. 30" value=""  />
                         <br>
                         <label align="center" for="supervisor">Supervisor</label>
                         <select name="supervisor" class="form-control form-control-lg">
@@ -87,8 +88,8 @@
                                 }
                             %>
                         </select>   
-                        <button type="submit" class="btn tm-bordered-btn pull-xs-center">Agregar</button>
-                        <button  class="btn tm-bordered-btn pull-xs-right" href="index.html">Volver</button> 
+                        <button type="submit" class="btn tm-bordered-btn pull-xs-center">Modificar</button>
+                        <a class="btn tm-bordered-btn pull-xs-center" href="/Proyecto/menu.html" role="button">Volver</a>
                     </div>                         
                 </form>   
 
@@ -99,16 +100,6 @@
         </div>
 
     </div>
-    <script>
-    function myFunction() {
-        var x = document.getElementById("Seleccion").value;
-        
-        for(int i=0; i<){
-            
-        }
-        document.getElementById("demo").innerHTML = "You selected: " + x;
-    }
-</script>
 
 </body>
 </html>

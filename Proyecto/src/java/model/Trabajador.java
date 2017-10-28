@@ -16,27 +16,20 @@ public class Trabajador {
     private String nombre;
     private String cargo;
     private int supervisor;
+    private int estado;
     
 
     public Trabajador() {
     }
 
-    public Trabajador(String usuarioT, String passwordT, String nombre, String cargo, int supervisor) {
-        this.idUsuario=0;
-        this.usuarioT = usuarioT;
-        this.passwordT = passwordT;
-        this.nombre = nombre;
-        this.cargo = cargo;
-        this.supervisor = supervisor;
-    }
-
-    public Trabajador(int idUsuario, String usuarioT, String passwordT, String nombre, String cargo, int supervisor) {
+    public Trabajador(int idUsuario, String usuarioT, String passwordT, String nombre, String cargo, int supervisor,int estado) {
         this.idUsuario = idUsuario;
         this.usuarioT = usuarioT;
         this.passwordT = passwordT;
         this.nombre = nombre;
         this.cargo = cargo;
         this.supervisor = supervisor;
+        this.estado=estado;
     }
 
     public int getIdUsuario() {
@@ -87,12 +80,18 @@ public class Trabajador {
         this.supervisor = supervisor;
     }
 
-    @Override
-    public String toString() {
-        return "Trabajador{" + "idUsuario=" + idUsuario + ", usuarioT=" + usuarioT + ", passwordT=" + passwordT + ", nombre=" + nombre + ", cargo=" + cargo + ", supervisor=" + supervisor + '}';
+    public int getEstado() {
+        return estado;
     }
 
-    
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Trabajador{" + "idUsuario=" + idUsuario + ", usuarioT=" + usuarioT + ", passwordT=" + passwordT + ", nombre=" + nombre + ", cargo=" + cargo + ", supervisor=" + supervisor + ", estado=" + estado + '}';
+    }
     
     
 }

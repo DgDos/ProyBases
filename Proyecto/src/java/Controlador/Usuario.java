@@ -7,7 +7,6 @@ package Controlador;
 
 import dao.TrabajadorDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -25,15 +24,14 @@ import model.Trabajador;
  */
 public class Usuario extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action=request.getParameter("action");
-        TrabajadorDAO t=new TrabajadorDAO();
-        ArrayList<Trabajador> trabajadores=new ArrayList<>();
+        String action = request.getParameter("action");
+        TrabajadorDAO t = new TrabajadorDAO();
+        ArrayList<Trabajador> trabajadores = new ArrayList<>();
         try {
-            trabajadores=t.getAllTrabajadores();
+            trabajadores = t.getAllTrabajadores();
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,39 +40,59 @@ public class Usuario extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/UsuarioC.jsp");
             rd.forward(request, response);
         }
-        if(action.equals("update")){
+        if (action.equals("update")) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/UsuarioU.jsp");
             rd.forward(request, response);
         }
-        if(action.equals("delete")){
+        if (action.equals("delete")) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/UsuarioD.jsp");
             rd.forward(request, response);
         }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuarioT=request.getParameter("usuario");
-        String passwordT=request.getParameter("password");
-        String nombre=request.getParameter("trabajador");
-        String cargo=request.getParameter("cargo");
-        int supervisor;
-        System.out.println("val:  "+request.getParameter("supervisor")!=null);
-        if(request.getParameter("supervisor")!=null){
-            supervisor=Integer.parseInt(request.getParameter("supervisor"));
-        }else{
-            supervisor=0;
-        }
-        Trabajador trabajador=new Trabajador(usuarioT, passwordT, nombre, cargo, supervisor);
-        TrabajadorDAO t=new TrabajadorDAO();
+        TrabajadorDAO t = new TrabajadorDAO();
+        ArrayList<Trabajador> trabajadores = new ArrayList<>();
         try {
-            t.addTrabajador(trabajador);
+            trabajadores = t.getAllTrabajadores();
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("menu.html");
-    }
+        String usuarioT = request.getParameter("usuario");
+        boolean tr = true;
+        for (Trabajador u : trabajadores) {
+            if (usuarioT.equalsIgnoreCase(u.getUsuarioT())) {
+                tr = false;
+                break;
+            }
+        }
+        if (tr) {
+            String passwordT = request.getParameter("password");
+            String nombre = request.getParameter("trabajador");
+            String cargo = request.getParameter("cargo");
+            int supervisor = Integer.parseInt(request.getParameter("supervisor"));
+            Trabajador trabajador = new Trabajador();
+            trabajador.setUsuarioT(usuarioT);
+            trabajador.setPasswordT(passwordT);
+            trabajador.setNombre(nombre);
+            trabajador.setCargo(cargo);
+            trabajador.setSupervisor(supervisor);
+            t = new TrabajadorDAO();
+            try {
+                t.addTrabajador(trabajador);
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.sendRedirect("menu.html");
+        }else{
+            request.setAttribute("usuarios", trabajadores);
+            request.setAttribute("respuesta", "Hay algo aqui");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/UsuarioC.jsp");
+            rd.forward(request, response);
+        }
 
+    }
 
 }

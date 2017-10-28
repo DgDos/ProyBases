@@ -20,7 +20,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
         <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
-        <link rel="stylesheet" href="css/templatemo-style.css">                    <!-- Templatemo style -->
+        <link rel="stylesheet" href="css/templatemo-style.css">
+        <link rel="stylesheet" href="css/proyecto.css"> <!-- Templatemo style -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,10 +51,20 @@
                         <br>
                         <label align="center" for="NIT">NIT</label>
                         <input type="text" name="NIT" maxlength="30" class="form-control" placeholder="máx. 10"  required/>
-                        <br>
+                         <% 
+                        if(request.getAttribute("nit") != null){%>
+                            <h6 class="tm-2-col-text-description">Nit ya registrado</h6>
+                        <%}else{%>
+                            <br>
+                        <%}%>
                         <label align="center" for="usuario">Usuario</label>
                         <input type="text" name="usuario" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
-                        <br>
+                         <% 
+                        if(request.getAttribute("usuarioE") != null){%>
+                            <h6 class="tm-2-col-text-description">Ya existe ese usuario por favor escoja otro</h6>
+                        <%}else{%>
+                            <br>
+                        <%}%>
                         <label align="center" for="password">Password</label>
                         <input type="password" name="password" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
                         <br>
@@ -61,8 +72,9 @@
                         <input type="text" name="direccion" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
                         <br>
                         <button type="submit" class="btn tm-bordered-btn pull-xs-center">Agregar</button>
-                        <button  class="btn tm-bordered-btn pull-xs-right" href="menu.html">Volver</button> 
-                    </div>                         
+                        <a class="btn tm-bordered-btn pull-xs-center" href="/Proyecto/menu.html" role="button">Volver</a>
+                    </div>   
+                        
                 </form>   
 
             </section>

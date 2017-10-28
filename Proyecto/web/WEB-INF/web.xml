@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>Inicio</servlet-name>
-        <servlet-class>Controlador.Inicio</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Chat</servlet-name>
-        <servlet-class>Controlador.Chat</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Finalizado</servlet-name>
-        <servlet-class>Controlador.Finalizado</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Usuario</servlet-name>
         <servlet-class>Controlador.Usuario</servlet-class>
     </servlet>
@@ -24,18 +12,22 @@
         <servlet-name>MensajeC</servlet-name>
         <servlet-class>Controlador.MensajeC</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>Inicio</servlet-name>
-        <url-pattern>/Inicio</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Chat</servlet-name>
-        <url-pattern>/Chat</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Finalizado</servlet-name>
-        <url-pattern>/Finalizado</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServicioC</servlet-name>
+        <servlet-class>Controlador.ServicioC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsuarioM</servlet-name>
+        <servlet-class>Controlador.UsuarioM</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmpresaM</servlet-name>
+        <servlet-class>Controlador.EmpresaM</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicioM</servlet-name>
+        <servlet-class>Controlador.ServicioM</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Usuario</servlet-name>
         <url-pattern>/Usuario</url-pattern>
@@ -47,6 +39,22 @@
     <servlet-mapping>
         <servlet-name>MensajeC</servlet-name>
         <url-pattern>/MensajeC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioC</servlet-name>
+        <url-pattern>/ServicioC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioM</servlet-name>
+        <url-pattern>/UsuarioM</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpresaM</servlet-name>
+        <url-pattern>/EmpresaM</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioM</servlet-name>
+        <url-pattern>/ServicioM</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

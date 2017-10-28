@@ -9,26 +9,28 @@ package model;
  *
  * @author FiJus
  */
-public class Empresa {
+public class EmpresaCliente {
     private int NIT;
     private String nombreEmpresa;
     private String usuarioE;
     private String passwordE;
     private String direccion;
+    private int estado;
 
-    public Empresa() {
+    public EmpresaCliente() {
     }
 
     public int getNIT() {
         return NIT;
     }
 
-    public Empresa(int NIT, String nombreEmpresa, String usuarioE, String passwordE, String direccion) {
+    public EmpresaCliente(int NIT, String nombreEmpresa, String usuarioE, String passwordE, String direccion, int estado) {
         this.NIT = NIT;
         this.nombreEmpresa = nombreEmpresa;
         this.usuarioE = usuarioE;
         this.passwordE = passwordE;
         this.direccion = direccion;
+        this.estado= estado;
     }
     
     public void setNIT(int NIT) {
@@ -67,5 +69,11 @@ public class Empresa {
         this.direccion = direccion;
     }
     
-    
+     public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
 }
