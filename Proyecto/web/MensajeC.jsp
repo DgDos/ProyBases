@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
         <link rel="stylesheet" href="css/templatemo-style.css">                    <!-- Templatemo style -->
-
+        <link rel="stylesheet" href="css/proyecto.css"> 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -85,8 +85,9 @@
                         <label align="center" for="texto">Texto</label>
                         <input type="text" name="texto" maxlength="30" class="form-control" placeholder="máx. 30"  required/>
                         <button type="submit" class="btn tm-bordered-btn pull-xs-center">Agregar</button>
+                        <a class="btn tm-bordered-btn pull-xs-center" href="/Proyecto/menu.html" role="button">Volver</a>
                     </form>  
-                    <a class="btn tm-bordered-btn pull-xs-center" href="/Proyecto/menu.html" role="button">Volver</a>
+                    
                 </div>                         
                    
 
