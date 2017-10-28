@@ -27,46 +27,64 @@ public class EmpresaC extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action=request.getParameter("action");
-        EmpresaClienteDAO e=new EmpresaClienteDAO();
-        ArrayList<EmpresaCliente> empresas=new ArrayList<>();
+        String action = request.getParameter("action");
+        EmpresaClienteDAO e = new EmpresaClienteDAO();
+        ArrayList<EmpresaCliente> empresas = new ArrayList<>();
         try {
-            empresas=e.getAllEmpresas();
+            empresas = e.getAllEmpresas();
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("empresas", empresas);
-        if (action.equals("create")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EmpresasC.jsp");
+        if (action.equals("update")) {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EmpresaU.jsp");
             rd.forward(request, response);
         }
-        if(action.equals("update")){
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EmpresasU.jsp");
-            rd.forward(request, response);
-        }
-        if(action.equals("delete")){
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EmrpesasD.jsp");
+        if (action.equals("delete")) {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EmpresaD.jsp");
             rd.forward(request, response);
         }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuarioE=request.getParameter("usuario");
-        String passwordE=request.getParameter("password");
-        String nombre=request.getParameter("nombreE");
-        int NIT=Integer.parseInt(request.getParameter("NIT"));
-        String direccion=request.getParameter("direccion");
-        EmpresaCliente empresa=new EmpresaCliente(NIT, nombre, usuarioE, passwordE, direccion);
-        
-        EmpresaClienteDAO e=new EmpresaClienteDAO();
+        String usuarioE = request.getParameter("usuario");
+        String passwordE = request.getParameter("password");
+        String nombre = request.getParameter("nombreE");
+        int NIT = Integer.parseInt(request.getParameter("NIT"));
+        String direccion = request.getParameter("direccion");
+        EmpresaClienteDAO e = new EmpresaClienteDAO();
+        ArrayList<EmpresaCliente> empresas = new ArrayList<>();
         try {
-            e.addEmpresa(empresa);
+            empresas = e.getAllEmpresas();
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmpresaC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("menu.html");
+        boolean t = true;
+        for (EmpresaCliente empresa : empresas) {
+            if (empresa.getNIT() == NIT) {
+                t = false;
+                request.setAttribute("nit", "nit");
+            }
+            if (empresa.getUsuarioE().equalsIgnoreCase(usuarioE)) {
+                t = false;
+                request.setAttribute("usuarioE", "usuarioE");
+            }
+        }
+        if (t) {
+            EmpresaCliente empresa = new EmpresaCliente(NIT, nombre, usuarioE, passwordE, direccion, 0);
+            try {
+                e.addEmpresa(empresa);
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.sendRedirect("menu.html");
+        }else{
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EmpresaC.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
 }

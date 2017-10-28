@@ -26,7 +26,7 @@ public class EmpresaClienteDAO {
     }
 
     public void addEmpresa(EmpresaCliente e) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into Empresa(NIT,nombreEmpresa,usuarioE,passwordE,direccion) values (?,?,?,?,?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into empresacliente(NIT,nombreEmpresa,usuarioE,passwordE,direccion,estado) values (?,?,?,?,?,1)");
         preparedStatement.setInt(1, e.getNIT());
         preparedStatement.setString(2, e.getNombreEmpresa());
         preparedStatement.setString(3, e.getUsuarioE());
@@ -37,23 +37,24 @@ public class EmpresaClienteDAO {
 
     public void deleteEmpresa(int idE) throws SQLException {
         
-        PreparedStatement preparedStatement = connection.prepareStatement("delete from Empresa where NIT=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("update empresacliente set estado=0 where NIT=?");
         preparedStatement.setInt(1, idE);
         preparedStatement.executeUpdate();
     }
 
-    public void updateEmpresa(String esquema,int idE) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update esquema set nombre_esquema=?" + " where id_esquema=?");
-        preparedStatement.setString(1, esquema);
-        preparedStatement.setInt(2, idE);
-        
+    public void updateEmpresa(EmpresaCliente e) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update empresacliente set nombreEmpresa=?,passwordE=?,direccion=?" + " where NIT=?");
+        preparedStatement.setString(1, e.getNombreEmpresa());
+        preparedStatement.setString(2, e.getPasswordE());
+        preparedStatement.setString(3, e.getDireccion());
+        preparedStatement.setInt(4, e.getNIT());
         preparedStatement.executeUpdate();
     }
 
     public ArrayList<EmpresaCliente> getAllEmpresas() throws SQLException {
         ArrayList<EmpresaCliente> empresas = new ArrayList<>();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from Empresa");
+        ResultSet rs = statement.executeQuery("select * from empresacliente where estado=1");
         while (rs.next()) {
             EmpresaCliente e = new EmpresaCliente();
             e.setNIT(rs.getInt("NIT"));
@@ -61,8 +62,24 @@ public class EmpresaClienteDAO {
             e.setPasswordE(rs.getString("passwordE"));
             e.setNombreEmpresa(rs.getString("nombreEmpresa"));
             e.setDireccion(rs.getString("direccion"));
+            e.setEstado(rs.getInt("estado"));
             empresas.add(e);
         }
         return empresas;
+    }
+
+    public EmpresaCliente getEmpresaById(int idU) throws SQLException{
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from empresacliente where NIT="+idU);
+        EmpresaCliente e=new EmpresaCliente();
+        if(rs.next()){
+            e.setNIT(idU);
+            e.setNombreEmpresa(rs.getString("nombreEmpresa"));
+            e.setUsuarioE(rs.getString("usuarioE"));
+            e.setPasswordE(rs.getString("passwordE"));
+            e.setDireccion(rs.getString("direccion"));
+            e.setEstado(rs.getInt("estado"));
+        }
+        return e;
     }
 }

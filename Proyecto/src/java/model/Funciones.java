@@ -13,6 +13,9 @@ public class Funciones {
     private int idUsuario;
     private int idServicio;
     private int valoracion;
+
+    public Funciones() {
+    }
     
 
     public Funciones(int idUsuario, int idServicio, int valoracion) {

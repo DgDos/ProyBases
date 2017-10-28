@@ -6,9 +6,7 @@
 package Controlador;
 
 import dao.ServicioDAO;
-import dao.TrabajadorDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Servicio;
-import model.Trabajador;
 
 /**
  *

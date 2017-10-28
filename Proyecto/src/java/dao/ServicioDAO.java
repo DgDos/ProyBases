@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Mensaje;
 import model.Servicio;
 import util.DbUtil;
 
@@ -27,37 +26,48 @@ public class ServicioDAO {
     }
 
     public void addServicio(Servicio s) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into Servicio(nombreS) values (?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into servicio(nombreS,estado) values (?,1)");
         preparedStatement.setString(1, s.getNombreS());
         preparedStatement.executeUpdate();
     }
 
-    public void deleteServicio(int idU1,int idU2) throws SQLException {
+    public void deleteServicio(int idServicio) throws SQLException {
         
-        PreparedStatement preparedStatement = connection.prepareStatement("delete from Mensaje where idU1=? and idU2=?");
-        preparedStatement.setInt(1, idU1);
-        preparedStatement.setInt(2, idU2);
+        PreparedStatement preparedStatement = connection.prepareStatement("update servicio set estado=0 where idServicio=?");
+        preparedStatement.setInt(1, idServicio);
         preparedStatement.executeUpdate();
     }
 
-    public void updateServicio(int idU1,int idU2, String texto) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update esquema set Texto=?" + " where idU1=? and idU2=?");
-        preparedStatement.setInt(2, idU1);
-        preparedStatement.setInt(3, idU2);
-        preparedStatement.setString(1, texto);
+    public void updateServicio(Servicio servicio) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update servicio set nombreS=?" + " where idServicio=?");
+        preparedStatement.setString(1, servicio.getNombreS());
+        preparedStatement.setInt(2, servicio.getIdServicio());
         preparedStatement.executeUpdate();
     }
 
     public ArrayList<Servicio> getAllServicios() throws SQLException {
         ArrayList<Servicio> servicios = new ArrayList<>();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from Servicio");
+        ResultSet rs = statement.executeQuery("select * from servicio where estado=1");
         while (rs.next()) {
             Servicio s=new Servicio();
             s.setIdServicio(rs.getInt("idServicio"));
             s.setNombreS(rs.getString("nombreS"));
+            s.setEstado(rs.getInt("estado"));
             servicios.add(s);
         }
         return servicios;
+    }
+    
+    public Servicio getServicioById(int idS) throws SQLException{
+        Statement statement=connection.createStatement();
+        ResultSet rs=statement.executeQuery("select * from servicio where idServicio="+idS);
+        Servicio s=new Servicio();
+        if(rs.next()){
+            s.setIdServicio(idS);
+            s.setNombreS(rs.getString("nombreS"));
+            s.setEstado(rs.getInt("estado"));
+        }
+        return s;
     }
 }

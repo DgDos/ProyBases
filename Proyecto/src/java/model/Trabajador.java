@@ -87,6 +87,11 @@ public class Trabajador {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Trabajador{" + "idUsuario=" + idUsuario + ", usuarioT=" + usuarioT + ", passwordT=" + passwordT + ", nombre=" + nombre + ", cargo=" + cargo + ", supervisor=" + supervisor + ", estado=" + estado + '}';
+    }
     
     
 }
